@@ -16,7 +16,7 @@ namespace U20240573
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new frmReservas());
         }
     }
 }
