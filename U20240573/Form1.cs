@@ -24,8 +24,9 @@ namespace U20240573
             dgvReservas.Columns.Add("DUI", "DUI");
             dgvReservas.Columns.Add("Categoria", "Categoria");
             dgvReservas.Columns.Add("Pelicula", "Pelicula");
+            dgvReservas.Columns.Add("Cantidad", "Cantidad");
 
-            
+
             dgvReservas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             btnAgregar.Enabled = false;
@@ -131,18 +132,27 @@ namespace U20240573
                 MessageBox.Show("Debe ingresar su nombre.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (string.IsNullOrWhiteSpace(mtxtCantidad.Text) || mtxtCantidad.Text == "00")
+            {
+                MessageBox.Show("Debe ingresar una cantidad valida de boletos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            MessageBox.Show($"Reserva agregada:\nNombre: {txtNombre.Text}\nCategoria: {cmbCategoria.Text}\nPelicula: {cmbPelicula.Text}",
+
+            MessageBox.Show($"Reserva agregada:\nNombre: {txtNombre.Text}\nCategoria: {cmbCategoria.Text}\nPelicula: {cmbPelicula.Text} \nCantidad: {mtxtCantidad.Text}",
                             "exitp", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
-            dgvReservas.Rows.Add(txtNombre.Text, mtxDUI.Text, cmbCategoria.SelectedItem.ToString(), cmbPelicula.SelectedItem.ToString());
+            dgvReservas.Rows.Add( txtNombre.Text, mtxDUI.Text, cmbCategoria.SelectedItem.ToString(), cmbPelicula.SelectedItem.ToString(), mtxtCantidad.Text);
 
-        
+
+
             txtNombre.Clear();
             mtxDUI.Clear();
             cmbCategoria.SelectedIndex = -1;
+            cmbPelicula.Items.Clear();  
             cmbPelicula.SelectedIndex = -1;
+            mtxtCantidad.Clear();
         }
 
         private void frmReservas_Load(object sender, EventArgs e)
@@ -176,11 +186,13 @@ namespace U20240573
 
         private void ActualizarEstadoBoton()
         {
-            bool camposValidos = cmbCategoria.SelectedIndex != -1 &&
-                                 cmbPelicula.SelectedIndex != -1 &&
-                                 !string.IsNullOrWhiteSpace(txtNombre.Text);
+             bool camposValidos = cmbCategoria.SelectedIndex != -1 &&
+                         cmbPelicula.SelectedIndex != -1 &&
+                         !string.IsNullOrWhiteSpace(txtNombre.Text) &&
+                         !string.IsNullOrWhiteSpace(mtxtCantidad.Text) &&
+                         mtxtCantidad.Text != "00";
 
-            btnAgregar.Enabled = camposValidos;
+    btnAgregar.Enabled = camposValidos;
         }
 
         private void cmbPelicula_SelectedIndexChanged(object sender, EventArgs e)
@@ -195,6 +207,26 @@ namespace U20240573
                 e.Handled = true;
                 MessageBox.Show("Por favor, ingrese solo letras.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void cmbCantidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarEstadoBoton();
+        }
+
+        private void mtxtCantidad_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            txtNombre.Clear();
+            mtxDUI.Clear();
+            cmbCategoria.SelectedIndex = -1;
+            cmbPelicula.Items.Clear();
+            cmbPelicula.SelectedIndex = -1;
+            mtxtCantidad.Clear();
         }
     }
 }

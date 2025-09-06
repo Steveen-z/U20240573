@@ -48,6 +48,8 @@ namespace U20240573
             this.lblCategoria = new System.Windows.Forms.Label();
             this.lblDUI = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
+            this.lblCantidad = new System.Windows.Forms.Label();
+            this.mtxtCantidad = new System.Windows.Forms.MaskedTextBox();
             this.tlpReserva.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).BeginInit();
             this.panel1.SuspendLayout();
@@ -109,6 +111,8 @@ namespace U20240573
             // 
             // panelReserva
             // 
+            this.panelReserva.Controls.Add(this.mtxtCantidad);
+            this.panelReserva.Controls.Add(this.lblCantidad);
             this.panelReserva.Controls.Add(this.btnAgregar);
             this.panelReserva.Controls.Add(this.lblReserva);
             this.panelReserva.Controls.Add(this.PicPromociones);
@@ -182,11 +186,12 @@ namespace U20240573
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // cmbPelicula
             // 
             this.cmbPelicula.FormattingEnabled = true;
-            this.cmbPelicula.Location = new System.Drawing.Point(437, 184);
+            this.cmbPelicula.Location = new System.Drawing.Point(438, 140);
             this.cmbPelicula.Name = "cmbPelicula";
             this.cmbPelicula.Size = new System.Drawing.Size(121, 24);
             this.cmbPelicula.TabIndex = 7;
@@ -195,7 +200,7 @@ namespace U20240573
             // cmbCategoria
             // 
             this.cmbCategoria.FormattingEnabled = true;
-            this.cmbCategoria.Location = new System.Drawing.Point(170, 184);
+            this.cmbCategoria.Location = new System.Drawing.Point(171, 140);
             this.cmbCategoria.Name = "cmbCategoria";
             this.cmbCategoria.Size = new System.Drawing.Size(121, 24);
             this.cmbCategoria.TabIndex = 6;
@@ -214,7 +219,7 @@ namespace U20240573
             // 
             this.lblPelicula.AutoSize = true;
             this.lblPelicula.Font = new System.Drawing.Font("Imprint MT Shadow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPelicula.Location = new System.Drawing.Point(355, 184);
+            this.lblPelicula.Location = new System.Drawing.Point(356, 140);
             this.lblPelicula.Name = "lblPelicula";
             this.lblPelicula.Size = new System.Drawing.Size(78, 20);
             this.lblPelicula.TabIndex = 3;
@@ -224,7 +229,7 @@ namespace U20240573
             // 
             this.lblCategoria.AutoSize = true;
             this.lblCategoria.Font = new System.Drawing.Font("Imprint MT Shadow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoria.Location = new System.Drawing.Point(77, 184);
+            this.lblCategoria.Location = new System.Drawing.Point(78, 140);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(87, 20);
             this.lblCategoria.TabIndex = 2;
@@ -250,6 +255,29 @@ namespace U20240573
             this.lblNombre.Size = new System.Drawing.Size(78, 20);
             this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre: ";
+            // 
+            // lblCantidad
+            // 
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Font = new System.Drawing.Font("Imprint MT Shadow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantidad.Location = new System.Drawing.Point(68, 203);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(96, 20);
+            this.lblCantidad.TabIndex = 14;
+            this.lblCantidad.Text = "N° Boletos: ";
+            // 
+            // mtxtCantidad
+            // 
+            this.mtxtCantidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mtxtCantidad.Location = new System.Drawing.Point(171, 203);
+            this.mtxtCantidad.Mask = "00";
+            this.mtxtCantidad.Name = "mtxtCantidad";
+            this.mtxtCantidad.Size = new System.Drawing.Size(37, 22);
+            this.mtxtCantidad.TabIndex = 15;
+            this.mtxtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mtxtCantidad.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mtxtCantidad_MaskInputRejected);
+            this.mtxtCantidad.TextChanged += new System.EventHandler(this.cmbCantidad_SelectedIndexChanged);
             // 
             // frmReservas
             // 
@@ -298,6 +326,8 @@ namespace U20240573
         private System.Windows.Forms.PictureBox PicPromociones;
         private System.Windows.Forms.Label lblReserva;
         private System.Windows.Forms.Button btnAgregar;
+        private System.Windows.Forms.Label lblCantidad;
+        private System.Windows.Forms.MaskedTextBox mtxtCantidad;
     }
 }
 
